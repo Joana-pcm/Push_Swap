@@ -16,23 +16,32 @@ int	checkinput(char **s);
 
 int	main(int ac, char **av)
 {
-	int	i;
-	int j;
-	char	**strs;
+	int		i;
+	int		j;
+	stack	*a;
+	stack	*b;
 
 	i = 0;
 	j = 0;
+	a = NULL;
+	b = NULL;
 
 	if (ac >= 2)
 	{
-		av = trim(ac, av);
-		strs = ft_split(av[i], ' ');
-		if (!checkinput(strs))
+		av = formatting(ac, av);
+		if (!valid_input(av))
 			return (0);
+		init_a(a, av);
+		if (!sorted)
+			sort_stacks(a, b);
+		else
+			ft_printf("Sorted!");
 	}
+	else
+		return (0);
 }
 
-int	checkinput(char **s)
+int	valid_input(char **s)
 {
 	int i;
 	int	j;
@@ -44,5 +53,5 @@ int	checkinput(char **s)
 		j *= (checkchr(s[i]));
 	}
 	j *= checkrepeat(s);
-	return (j);
+return (j);
 }

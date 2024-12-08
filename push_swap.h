@@ -20,6 +20,6 @@ typedef	struct s_dlists {
 	int				index;
 	struct s_dlists *next;
 	struct s_dlists *prev;
-}					d_list;
+}					stack;
 
 #endif
