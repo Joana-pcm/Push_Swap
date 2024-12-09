@@ -1,43 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   formatting.c                                       :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpatrici <jpatrici@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/09 14:18:53 by jpatrici          #+#    #+#             */
-/*   Updated: 2024/12/09 17:16:25 by jpatrici         ###   ########.fr       */
+/*   Created: 2024/12/09 15:52:33 by jpatrici          #+#    #+#             */
+/*   Updated: 2024/12/09 16:52:22 by jpatrici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-
-char	**formatting(int ac, char **av)
+t_stack	*init_a(t_stack **a, char **av)
 {
 	int	i;
 
 	i = 0;
-	if (ac < 1)
+	a = malloc(sizeof(t_stack *) * arrlen(av));
+	if (!a)
 		return (0);
-	av = ft_split(av[i + 1], ' ');
-	while (av[i++] != 0)
-		av[i] = trim_start(av[i + 1]);
-	return (av);
+	while (av[i])
+	{
+		(*a)->content = ft_atol(av[i]);
+		(*a)->index = i;
+		(*a)->prev = (*a);
+		(*a) = (*a)->next;
+		i++;
+	}
+	return (*a);
 }
 
-char	*trim_start(char *s)
+int	arrlen(char **av)
 {
-	int		n;
-	char	*res;
+	int	i;
 
-	n = -1;
-	while (s[++n] && (s[n] == '0' || (s[n] == '+' && ft_isdigit(s[n + 1]))))
-	{
-		if (s[n] == '0' && s[n + 1] == '\0')
-			return ("0");
-	}
-	res = ft_substr(s, n, ft_strlen(s));
-	free(s);
-	return (res);
+	i = 0;
+	while (av[i])
+		i++;
+	return (i);
 }

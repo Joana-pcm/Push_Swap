@@ -14,12 +14,23 @@
 # define PUSH_SWAP_H
 
 # include	"libft/libft.h"
+# include	"limits.h"
 
 typedef	struct s_dlists {
-	int				content;
+	int			content;
 	int				index;
 	struct s_dlists *next;
 	struct s_dlists *prev;
-}					stack;
+}					t_stack;
+
+char	*trim_start(char *s);
+char	**formatting(int ac, char **av);
+int		valid_input(char **s);
+long	ft_atol(char *nptr);
+int		checkchr(char *s);
+int		checkrepeat(char **s);
+t_stack	*init_a(t_stack **a, char **av);
+int	arrlen(char **av);
 
 #endif
+
