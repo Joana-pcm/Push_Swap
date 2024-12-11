@@ -29,8 +29,9 @@ int		valid_input(char **s);
 long	ft_atol(char *nptr);
 int		checkchr(char *s);
 int		checkrepeat(char **s);
-t_stack	*init_a(t_stack **a, char **av);
-int	arrlen(char **av);
+t_stack	*stack_new(char *av);
+void	stack_addback(t_stack **a, t_stack *node);
+void	stack_init(t_stack **lst,char **av);
 
 #endif
 

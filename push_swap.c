@@ -26,14 +26,22 @@ int	main(int ac, char **av)
 
 	if (ac >= 2)
 	{
-		av = formatting(ac, av);
+av = formatting(ac, av);
 		if (!valid_input(av))
 			return (0);
-		init_a(&a, av);
+		stack_init(&a, av);
+		b = a;
+		while (b)
+		{
+			printf("nbr list a:\t%i\t", b->content);
+			printf("index:\t%i\n", b->index);
+			b = b->next;
+		}
 		/*if (!sorted(a))*/
 		/*	sort_stacks(a, b);*/
 		/*else*/
 		/*	ft_printf("Sorted!");*/
+		return (1);
 	}
 	else
 		return (0);
@@ -44,8 +52,8 @@ int	valid_input(char **s)
 	int i;
 	int	j;
 
-	i = 0;
-	while (s[i] != 0)
+	i = -1;
+	while (s[++i] != 0)
 	{		
 		j = (checkchr(s[i])) * (ft_atol(s[i]) <= INT_MAX 
 			|| ft_atol(s[i]) >= INT_MIN);

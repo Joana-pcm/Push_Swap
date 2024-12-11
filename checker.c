@@ -16,16 +16,15 @@ int	checkchr(char *s)
 {
 	int	i;
 
-	i = 0;
+	i = -1;
 	if (ft_strlen(s) > 11)
 		return 0;
-	while (s[i])
+	while (s[++i] != '\0')	
 	{
 		if ((s[i] == '-' && s[i + 1] == '-') 
 			|| (s[i] == '-' && !ft_isdigit(s[i + 1])) 
 			|| (!ft_isdigit(s[i]) && s[i] != '-'))
 			return (0);
-		i++;
 	}
 	return (1);
 }
@@ -37,10 +36,10 @@ int	checkrepeat(char **s)
 	
 	i = 0;
 	result = 1;
-	while (s[i])
+	while (s[i] != 0)
 	{
 		j = i;
-		while (s[++j])
+		while (s[++j] != 0)
 			result *= (ft_strncmp(s[i], s[j], 11));
 		i++;
 	}

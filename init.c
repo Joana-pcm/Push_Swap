@@ -12,31 +12,46 @@
 
 #include "push_swap.h"
 
-t_stack	*init_a(t_stack **a, char **av)
+t_stack	*stack_new(char *av)
 {
-	int	i;
+	t_stack	*node;
 
-	i = 0;
-	a = malloc(sizeof(t_stack *) * arrlen(av));
-	if (!a)
+	node = malloc(sizeof(t_stack));
+	if (!node)
 		return (0);
-	while (av[i])
-	{
-		(*a)->content = ft_atol(av[i]);
-		(*a)->index = i;
-		(*a)->prev = (*a);
-		(*a) = (*a)->next;
-		i++;
-	}
-	return (*a);
+	node->content = ft_atol(av);
+	node->index = -1;
+	node->prev = NULL;
+	node->next = NULL;
+	return (node);
 }
 
-int	arrlen(char **av)
+void	stack_addback(t_stack **a, t_stack *node)
 {
-	int	i;
+	t_stack	*p;
 
-	i = 0;
-	while (av[i])
-		i++;
-	return (i);
+	p = *a;
+	if (!p)
+	{
+		*a = node;
+		return ;
+	}
+	while (p->next)
+		p = p->next;
+	p->next = node;
+}
+
+void	stack_init(t_stack **lst,char **av)
+{
+	t_stack	*n;
+
+	*lst = stack_new(*av);
+	if (!lst)
+		return ;
+	n = *lst;
+	while (n && (*(++av)))
+	{
+		stack_addback(lst, stack_new(*av));
+		n = n->next;
+	}
 }
