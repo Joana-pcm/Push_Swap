@@ -55,3 +55,15 @@ void	stack_init(t_stack **lst,char **av)
 		n = n->next;
 	}
 }
+
+t_stack	*findlastnode(t_stack *stack)
+{
+	t_stack	*p;
+
+	p = stack;
+	if (!p)
+		return (0);
+	while (p->next)
+		p = p->next;
+	return (p);
+}
