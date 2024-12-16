@@ -34,7 +34,7 @@ void	push(t_stack **dest, t_stack **src, char c)
 
 void	swap(t_stack **a, char c)
 {
-	if (!*a || !a || !*a->next)
+	if (!*a || !a || !*(*a)->next)
 		return ;
 	*a = (*a)->next;
 	(*a)->prev->prev = *a,
@@ -47,27 +47,39 @@ void	swap(t_stack **a, char c)
 		ft_printf("s%c\n", c);
 }
 
-void	rot(t_stack *a, char c)
+void	rot(t_stack **a, char c)
 {
 	t_stack	*temp;
 
-	if (!a || !a->next)
+	if (!*a || !(*a)->next)
 		return ;
-	temp = findlastnode(a);
-	temp->next = a;
-	a = a->next;
-	a->prev
-	
-	ft_printf("r%c\n", c);
+	temp = findlastnode(*a);
+	temp->next = *a;
+	*a = (*a)->next;
+	(*a)->prev = NULL;
+	temp->next->prev = temp;
+	temp->next->next = NULL;
+	if (c != 'r')
+		ft_printf("r%c\n", c);
 }
 
-void	rrot(t_stack *a, char c)
+void	rrot(t_stack **a, char c)
 {
-	
-	ft_printf("rr%c\n", c);
+	t_stack	*temp;
+
+	if(!*a || !a || !(*a)->next)
+		return ;
+	temp = findlastnode(*a);
+	temp->prev->next = NULL;
+	temp->next = *a;
+	temp->prev = NULL;
+	*a = temp;
+	temp->next->prev = temp;
+	if (c != 'i')
+		ft_printf("rr%c\n", c);
 }
 
-void	simmoves(t_stack *a, t_stack *b, char move)
+void	moveab(t_stack **a, t_stack **b, char move)
 {
 	if (move == 's')
 	{
