@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft/libft.h"
 #include "push_swap.h"
 
 void	push(t_stack **dest, t_stack **src, char c)
@@ -29,12 +30,13 @@ void	push(t_stack **dest, t_stack **src, char c)
 		*dest = temp;
 		temp->next = NULL;
 	}
-	ft_printf("p%c\n", c);
+	if (c != 'p')
+		ft_printf("p%c\n", c);
 }
 
 void	swap(t_stack **a, char c)
 {
-	if (!*a || !a || !*(*a)->next)
+	if (!*a || !a || !(*a)->next)
 		return ;
 	*a = (*a)->next;
 	(*a)->prev->prev = *a,
@@ -53,7 +55,7 @@ void	rot(t_stack **a, char c)
 
 	if (!*a || !(*a)->next)
 		return ;
-	temp = findlastnode(*a);
+	temp = ft_lstlast(*a);
 	temp->next = *a;
 	*a = (*a)->next;
 	(*a)->prev = NULL;
@@ -69,7 +71,7 @@ void	rrot(t_stack **a, char c)
 
 	if(!*a || !a || !(*a)->next)
 		return ;
-	temp = findlastnode(*a);
+	temp = ft_lstlast(*a);
 	temp->prev->next = NULL;
 	temp->next = *a;
 	temp->prev = NULL;
@@ -79,7 +81,8 @@ void	rrot(t_stack **a, char c)
 		ft_printf("rr%c\n", c);
 }
 
-void	moveab(t_stack **a, t_stack **b, char move)
+
+void	simmoves(t_stack **a, t_stack **b, char move)
 {
 	if (move == 's')
 	{

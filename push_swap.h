@@ -32,6 +32,11 @@ int		checkrepeat(char **s);
 t_stack	*stack_new(char *av);
 void	stack_addback(t_stack **a, t_stack *node);
 void	stack_init(t_stack **lst,char **av);
+t_stack	*sorting(t_stack **a, t_stack **b);
+void	push(t_stack **dest, t_stack **src, char c);
+void	swap(t_stack **a, char c);
+void	rot(t_stack **a, char c);
+void	rrot(t_stack **a, char c);
+void	simmoves(t_stack **a, t_stack **b, char move);
 
 #endif
-
