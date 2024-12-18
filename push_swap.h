@@ -15,10 +15,12 @@
 
 # include	"libft/libft.h"
 # include	"limits.h"
+# include	<stdbool.h>
 
 typedef	struct s_dlists {
 	int			content;
-	int				index;
+	int			index;
+	bool		bin;
 	struct s_dlists *next;
 	struct s_dlists *prev;
 }					t_stack;
@@ -29,10 +31,15 @@ int		valid_input(char **s);
 long	ft_atol(char *nptr);
 int		checkchr(char *s);
 int		checkrepeat(char **s);
+//	****************utils*******************
 t_stack	*stack_new(char *av);
 void	stack_addback(t_stack **a, t_stack *node);
 void	stack_init(t_stack **lst,char **av);
+int	ft_stacksize(t_stack *a);
+//	*********sorting functions**************
 t_stack	*sorting(t_stack **a, t_stack **b);
+int	is_sorted(t_stack **a);
+//	***********move functions***************
 void	push(t_stack **dest, t_stack **src, char c);
 void	swap(t_stack **a, char c);
 void	rot(t_stack **a, char c);

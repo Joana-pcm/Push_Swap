@@ -16,21 +16,28 @@ t_stack	*sorting(t_stack **a, t_stack **b)
 {
 	if (is_sorted(a))
 		ft_printf("Sorted!");
-	if (ft_lstsize(a) == 2)
+	if (ft_stacksize(*a) == 2)
 		swap(a, 'a');
-	else if (ft_lstsize(a) == 3)
+	else if (ft_stacksize(*a) == 3)
 		threesort(a, b);
-	else if (ft_lstsize(a) == 4)
+	else if (ft_stacksize(*a) == 4)
 		foursort(a, b);
-	else if (ft_lstsize(a) == 5)
+	else if (ft_stacksize(*a) == 5)
 		fivesort(a, b);
-	return (b);
+	return (*a);
 }
 
-void	threesort(t_stack **a, t_stack **b)
+int	is_sorted(t_stack **a)
 {
-	if (a->content > a->next->content 
-		&& a->next->content > a->next->next->content)
-		
+	t_stack	*temp;
+	int		count;
 
+	temp = *a;
+	count = 0;
+	while (temp->next)
+	{
+		count += (temp < temp->next);
+		temp = temp->next;
+	}
+	return ((count == ft_stacksize(*a)));
 }
