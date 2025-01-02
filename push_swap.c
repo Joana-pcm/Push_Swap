@@ -30,18 +30,27 @@ av = formatting(ac, av);
 		if (!valid_input(av))
 			return (0);
 		stack_init(&a, av);
-		b = a;
+		ft_index(&a);
+		push(&b, &a, 'b');
+		push(&b, &a, 'b');
+		push(&b, &a, 'b');
+		while (b)
+			b = b->prev;
+		while (a)
+		{
+			ft_printf("nbr list a:\t%i\t", a->content);
+			ft_printf("index:\t%i\n", a->index);
+			a = a->next;
+		}
+		write(1, "\n", 1);
 		while (b)
 		{
-			printf("nbr list a:\t%i\t", b->content);
-			printf("index:\t%i\n", b->index);
+			ft_printf("nbr list b:\t%i\t", b->content);
+			ft_printf("index:\t%i\n", b->index);
 			b = b->next;
 		}
-		/*if (!sorted(a))*/
-		/*	sort_stacks(a, b);*/
-		/*else*/
-		/*	ft_printf("Sorted!");*/
-		return (1);
+
+	return (1);
 	}
 	else
 		return (0);

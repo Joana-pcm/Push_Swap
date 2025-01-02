@@ -28,3 +28,15 @@ int	ft_stacksize(t_stack *a)
 	}
 	return (i);
 }
+
+t_stack	*stacklast(t_stack *a)
+{
+	t_stack	*p;
+
+	p = a;
+	if (!p)
+		return (0);
+	while (p->next)
+		p = p->next;
+	return (p);
+}

@@ -6,7 +6,7 @@
 /*   By: jpatrici <jpatrici@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 10:32:34 by jpatrici          #+#    #+#             */
-/*   Updated: 2024/12/03 12:00:30 by jpatrici         ###   ########.fr       */
+/*   Updated: 2025/01/02 15:57:01 by jpatrici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@
 
 typedef	struct s_dlists {
 	int			content;
-	int			index;
-	bool		bin;
+	int				index;
 	struct s_dlists *next;
 	struct s_dlists *prev;
 }					t_stack;
@@ -36,7 +35,10 @@ t_stack	*stack_new(char *av);
 void	stack_addback(t_stack **a, t_stack *node);
 void	stack_init(t_stack **lst,char **av);
 int	ft_stacksize(t_stack *a);
+t_stack	*stacklast(t_stack *a);
 //	*********sorting functions**************
+int	getmin(t_stack *a, t_stack *head);
+void	ft_index(t_stack **a);
 t_stack	*sorting(t_stack **a, t_stack **b);
 int	is_sorted(t_stack **a);
 //	***********move functions***************

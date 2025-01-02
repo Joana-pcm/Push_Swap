@@ -55,7 +55,7 @@ void	rot(t_stack **a, char c)
 
 	if (!*a || !(*a)->next)
 		return ;
-	temp = ft_lstlast(*a);
+	temp = stacklast(*a);
 	temp->next = *a;
 	*a = (*a)->next;
 	(*a)->prev = NULL;
@@ -71,7 +71,7 @@ void	rrot(t_stack **a, char c)
 
 	if(!*a || !a || !(*a)->next)
 		return ;
-	temp = ft_lstlast(*a);
+	temp = stacklast(*a);
 	temp->prev->next = NULL;
 	temp->next = *a;
 	temp->prev = NULL;

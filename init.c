@@ -20,7 +20,7 @@ t_stack	*stack_new(char *av)
 	if (!node)
 		return (0);
 	node->content = ft_atol(av);
-	node->index = -1;
+	node->index = 0;
 	node->prev = NULL;
 	node->next = NULL;
 	return (node);
