@@ -12,26 +12,33 @@
 
 #include "push_swap.h"
 
-int	getmin(t_stack *a, t_stack *head)
+// index the stack, to use radix sort.
+int	getmin(t_stack *head)
 {
 	static	int	min;
 	t_stack		*p;
+	t_stack		*node;
 
-	p = head;
+	node = head;
 	min = 0;
-	printf("nbr: %i	index: %i	", a->content, a->index);
-	printf("min: %i\n", min);
-	while (p)
+	while (node)
 	{
-		if (a->content > p->content)
-			++a->index;
-		p = p->next;
+		p = head;
+		while (p)
+		{
+			if (node->content > p->content)
+				++node->index;
+			p = p->next;
+		}
+	if (node->index == 0)
+		min = node->content;
+//	printf("nbr:\t%i\nindex:\t%i\n------\n", node->content, node->index);
+//	printf("min: %i\n------\n", min);
+		node = node->next;
 	}
-	if (a->index == 0)
-		min = a->content;
-	return (min);
+		return (min);
 }
-
+/*
 void	ft_index(t_stack **a)
 {
 	t_stack	*p;
@@ -43,21 +50,21 @@ void	ft_index(t_stack **a)
 		getmin(p, *a);
 		p = p->next;
 	}
-}
+}*/
 
 t_stack	*sorting(t_stack **a, t_stack **b)
 {
-	ft_index(a);
+//	ft_index(a);
 	if (is_sorted(a))
-		ft_printf("Sorted!");
+		printf("Sorted!");
 	if (ft_stacksize(*a) == 2)
 		swap(a, 'a');
-	else if (ft_stacksize(*a) == 3)
+/*	else if (ft_stacksize(*a) == 3)
 		threesort(a, b);
 	else if (ft_stacksize(*a) == 4)
 		foursort(a, b);
 	else if (ft_stacksize(*a) == 5)
-		fivesort(a, b);
+		fivesort(a, b);*/
 	return (*a);
 }
 

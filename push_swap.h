@@ -26,6 +26,7 @@ typedef	struct s_dlists {
 
 char	*trim_start(char *s);
 char	**formatting(int ac, char **av);
+char	*ft_join(char *s1, char *s2);
 int		valid_input(char **s);
 long	ft_atol(char *nptr);
 int		checkchr(char *s);
@@ -37,8 +38,7 @@ void	stack_init(t_stack **lst,char **av);
 int	ft_stacksize(t_stack *a);
 t_stack	*stacklast(t_stack *a);
 //	*********sorting functions**************
-int	getmin(t_stack *a, t_stack *head);
-void	ft_index(t_stack **a);
+int	getmin(t_stack *head);
 t_stack	*sorting(t_stack **a, t_stack **b);
 int	is_sorted(t_stack **a);
 //	***********move functions***************
