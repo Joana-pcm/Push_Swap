@@ -6,7 +6,7 @@
 /*   By: jpatrici <jpatrici@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:30:05 by jpatrici          #+#    #+#             */
-/*   Updated: 2024/12/04 11:37:31 by jpatrici         ###   ########.fr       */
+/*   Updated: 2025/01/07 16:46:46 by jpatrici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ int	main(int ac, char **av)
 		if (!valid_input(av))
 			return (0);
 		stack_init(&a, av);
-		getmin(a);
-		swap(&a, 'a');
-		rrot(&a, 'a');
-		push(&b, &a, 'b');
-		push(&b, &a, 'b');
+		sorting(&a, &b);
+		/*swap(&a, 'a');*/
+		/*rrot(&b, 'b');*/
+		/*push(&b, &a, 'b');*/
+		/*push(&b, &a, 'b');*/
 		while (a)
 		{
 			printf("nbr list a:\t%i\t", a->content);

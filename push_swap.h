@@ -6,7 +6,7 @@
 /*   By: jpatrici <jpatrici@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 10:32:34 by jpatrici          #+#    #+#             */
-/*   Updated: 2025/01/02 15:57:01 by jpatrici         ###   ########.fr       */
+/*   Updated: 2025/01/07 17:08:56 by jpatrici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ void	stack_init(t_stack **lst,char **av);
 int	ft_stacksize(t_stack *a);
 t_stack	*stacklast(t_stack *a);
 //	*********sorting functions**************
-int	getmin(t_stack *head);
+t_stack	*getmin(t_stack *head);
+void	threesort(t_stack **a);
+void	four_five_sort(t_stack **a, t_stack **b, t_stack *min);
+void	radix_sort(t_stack **a, t_stack **b);
 t_stack	*sorting(t_stack **a, t_stack **b);
 int	is_sorted(t_stack **a);
 //	***********move functions***************
