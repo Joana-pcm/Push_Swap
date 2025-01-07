@@ -26,7 +26,7 @@ char	*ft_join(char *s1, char *s2)
 		return (NULL);
 	while (s1[++i])
 		joint[i] = s1[i];
-	joint[i] = ' ';
+	joint[i++] = ' ';
 	while (s2[++j])
 		joint[i++] = s2[j];
 	joint[i] = '\0';
@@ -36,12 +36,18 @@ char	*ft_join(char *s1, char *s2)
 char	**formatting(int ac, char **av)
 {
 	int	i;
+	int j;
 
 	i = 1;
+	j = 1;
 	if (ac < 1)
 		return (0);
-	while (av[2])
-		av[i] = ft_join(av[i], av[i + 1]);
+	while (ac > 2)
+	{
+		av[i] = ft_join(av[i], av[i + j]);
+		j++;
+		ac--;
+	}
 	av = ft_split(av[1], ' ');
 	i = -1;
 	while (av[++i] != 0)
