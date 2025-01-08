@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "push_swap.h"
 
 void	push(t_stack **dest, t_stack **src, char c)
@@ -21,7 +20,6 @@ void	push(t_stack **dest, t_stack **src, char c)
 		return ;
 	p = *src;
 	*src = (*src)->next;
-//	(*src)->prev = NULL;
 	if (*dest)
 	{
 		p->next = *dest;
@@ -48,14 +46,6 @@ void	swap(t_stack **a, char c)
 	p->next = (*a)->next;
 	(*a)->prev = NULL;
 	(*a)->next = p;
-
-/*	*a = (*a)->next;
-	(*a)->prev->prev = *a,
-	(*a)->prev->next = (*a)->next;
-	if ((*a)->next)
-		(*a)->next->prev = (*a)->prev;
-	(*a)->next = (*a)->prev;
-	(*a)->prev = NULL;*/
 	if (c != 's')
 		printf("s%c\n", c);
 }
@@ -82,7 +72,7 @@ void	rrot(t_stack **a, char c)
 	t_stack	*end;
 	t_stack	*penult;
 
-	if(!*a || !a || !(*a)->next)
+	if (!*a || !a || !(*a)->next)
 		return ;
 	start = *a;
 	end = stacklast(*a);
@@ -109,7 +99,7 @@ void	simmoves(t_stack **a, t_stack **b, char move)
 	else if (move == 'p')
 	{
 		push(a, b, 'p');
-		push(b, a, 'p');	
+		push(b, a, 'p');
 		printf("pp\n");
 	}
 	else if (move == 'r')

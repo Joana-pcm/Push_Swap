@@ -19,52 +19,53 @@ int	main(int ac, char **av)
 	t_stack	*a;
 	t_stack	*b;
 
-	i = 0;
+	i = -1;
 	j = 0;
 	a = NULL;
 	b = NULL;
-
 	if (ac >= 2)
 	{
 		av = formatting(ac, av);
 		if (!valid_input(av))
+		{
+			ft_printf("Error\n");
 			return (0);
+		}
 		stack_init(&a, av);
 		sorting(&a, &b);
-		/*swap(&a, 'a');*/
-		/*rrot(&b, 'b');*/
-		/*push(&b, &a, 'b');*/
-		/*push(&b, &a, 'b');*/
-		while (a)
-		{
-			printf("nbr list a:\t%i\t", a->content);
-			printf("index:\t%i\n", a->index);
-			a = a->next;
-		}
-		write(1, "\n", 1);
-		while (b)
-		{
-			printf("nbr list b:\t%i\t", b->content);
-			printf("index:\t%i\n", b->index);
-			b = b->next;
-		}
-
-	return (1);
+		freestacks(av, a);
+		return (1);
 	}
 	else
 		return (0);
 }
 
+int	is_sorted(t_stack **a)
+{
+	t_stack	*temp;
+	int		count;
+
+	temp = *a;
+	count = 1;
+	while (temp->next)
+	{
+		count += (temp->content < temp->next->content);
+		temp = temp->next;
+	}
+	return ((count == ft_stacksize(*a)));
+}
+
 int	valid_input(char **s)
 {
-	int i;
+	int	i;
 	int	j;
 
 	i = -1;
+	j = 1;
 	while (s[++i] != 0)
-	{		
-		j = (checkchr(s[i])) * (ft_atol(s[i]) <= INT_MAX 
-			|| ft_atol(s[i]) >= INT_MIN);
+	{
+		j *= (checkchr(s[i])) * (ft_atol(s[i]) <= INT_MAX) * \
+		(ft_atol(s[i]) >= INT_MIN);
 	}
 	j *= checkrepeat(s);
 	return (j);
@@ -73,8 +74,8 @@ int	valid_input(char **s)
 long	ft_atol(char *nptr)
 {
 	long	res;
-	int	i;
-	int	sign;
+	int		i;
+	int		sign;
 
 	i = 0;
 	res = 0;

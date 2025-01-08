@@ -41,7 +41,7 @@ void	stack_addback(t_stack **a, t_stack *node)
 	p->next = node;
 }
 
-void	stack_init(t_stack **lst,char **av)
+void	stack_init(t_stack **lst, char **av)
 {
 	t_stack	*n;
 

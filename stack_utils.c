@@ -40,3 +40,48 @@ t_stack	*stacklast(t_stack *a)
 		p = p->next;
 	return (p);
 }
+
+void	freestacks(char **av, t_stack *a)
+{
+	t_stack	*temp;
+	int		i;
+
+	i = -1;
+	while (av[++i])
+	{
+		free(av[i]);
+	}
+	free(av);
+	while (a)
+	{
+		temp = a->next;
+		free(a);
+		a = temp;
+	}
+	(void) temp;
+	(void) av;
+	(void) a;
+}
+
+void	free_error()
+{
+	int	i;
+	t_stack	temp;
+
+	i = -1;
+	ft_printf("Error\n");
+	while (av[++i] || a || b)
+	{
+		if (av[i])
+			free(av[i]);
+		if (a)
+		{
+			temp = a;
+			free(a);
+			a = temp->next;
+		}
+		if (b)
+			free(b);
+
+	}
+}

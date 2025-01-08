@@ -30,25 +30,29 @@ char	*ft_join(char *s1, char *s2)
 	while (s2[++j])
 		joint[i++] = s2[j];
 	joint[i] = '\0';
+	free(s1);
 	return (joint);
 }
 
 char	**formatting(int ac, char **av)
 {
-	int	i;
-	int j;
+	int		i;
+	int		j;
+	char	*temp;
 
 	i = 1;
 	j = 1;
+	temp = ft_strdup(av[1]);
 	if (ac < 1)
 		return (0);
 	while (ac > 2)
 	{
-		av[i] = ft_join(av[i], av[i + j]);
+		temp = ft_join(temp, av[i + j]);
 		j++;
 		ac--;
 	}
-	av = ft_split(av[1], ' ');
+	av = ft_split(temp, ' ');
+	free(temp);
 	i = -1;
 	while (av[++i] != 0)
 		av[i] = trim_start(av[i]);
@@ -65,7 +69,10 @@ char	*trim_start(char *s)
 	while (s[++n] && (s[n] == '0' || (s[n] == '+' && ft_isdigit(s[n + 1]))))
 	{
 		if (s[n] == '0' && s[n + 1] == '\0')
-			return ("0");
+		{
+			free(s);
+			return (ft_strdup("0"));
+		}
 	}
 	if (s[0] == '-' && ft_isdigit(s[1]))
 		s[--n] = '-';
